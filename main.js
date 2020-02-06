@@ -27,7 +27,8 @@ const vm = new Vue({
       { value: 0, label: '作業中'},
       { value: 1, label: '完了'}
     ],
-    current: -1
+    current: -1,
+    showOverlay: false
   },
 
   computed: {
@@ -80,6 +81,14 @@ const vm = new Vue({
     doRemove: function(item){
       var index = this.todos.indexOf(item)
       this.todos.splice(index, 1)
+    },
+    //モーダルウィンドウを開く
+    openModal: function(){
+      this.showOverlay = true
+    },
+    //同閉じる
+    closeModal: function(){
+      this.showOverlay = false;
     }
   }
 })

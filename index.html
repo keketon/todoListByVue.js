@@ -37,7 +37,7 @@
             </button>
           </td>
           <td class="button">
-            <button v-on:click.ctrl="doRemove(item)">
+            <button @click="doRemove(item)">
               削除
             </button>
           </td>
@@ -51,7 +51,22 @@
       <button type="submit">追加</button>
     </form>
 
+    <!--オーバーレイ用-->
+    <div id="overlay" v-show="showOverlay" @click="closeModal">
+      <div id="overlayContent">
+        <p>削除します。</p>
+        <p>
+          <button @click="closeModal">
+            はい
+          </button>
+          <button @click="closeModal">
+            いいえ
+          </button>
+        </p>
+      </div>
+    </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="main.js"></script>
 </body>
