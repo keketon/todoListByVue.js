@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Vue.js App</title>
+  <title>Vue.js ToDoApp</title>
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -15,14 +15,14 @@
     </label>
 
     <!--todoテーブル-->
-    <p> {{ computedTodos.length }} 件を表示中</p>
+    <p> <font size=5> {{ computedTodos.length }} </font> tasks displayed</p>
     <table>
       <!--ヘッダ部分-->
       <thread>
         <tr>
           <th class="id">ID</th>
-          <th class="comment">コメント</th>
-          <th class="state">状態</th>
+          <th class="comment">Comment</th>
+          <th class="state">State</th>
           <th class="button">-</th>
         </tr>
       </thread>
@@ -37,30 +37,33 @@
             </button>
           </td>
           <td class="button">
-            <button @click="doRemove(item)">
-              削除
+            <button class="deleteButton" @click="openDeleteModal(item)">
+              Delete
             </button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <h2>新しい作業の追加</h2>
+    <h2>Add new task</h2>
     <form class="add-form" v-on:submit.prevent="doAdd">
-      コメント <input type="text" ref="comment">
-      <button type="submit">追加</button>
+      Comment <input type="text" ref="comment">
+      <button type="submit">Add</button>
     </form>
 
     <!--オーバーレイ用-->
-    <div id="overlay" v-show="showOverlay" @click="closeModal">
-      <div id="overlayContent">
-        <p>削除します。</p>
-        <p>
-          <button @click="closeModal">
-            はい
+    <div id="overlay" v-show="showDeleteOverlay">
+      <!--overlayの@clickは消した-->
+      <div id="overlayDelete">
+        <p>Do you delete this task?</p>
+        <p id="YNButtons">
+          <button id="DeleteYesbutton"
+            @click="doRemove(toBeRemoved); closeDeleteModal()"
+            ref="DeleteYes">
+            Yes
           </button>
-          <button @click="closeModal">
-            いいえ
+          <button @click="closeDeleteModal">
+            No
           </button>
         </p>
       </div>

@@ -53,7 +53,11 @@ button {
   color: #fff;
   cursor: pointer;
 }
-#overlay{
+.deleteButton,
+#DeleteYesbutton {
+  background: #f02244;
+}
+#overlay {
   z-index: 1;
   /*画面全体を覆う処理*/
   position: fixed;
@@ -67,9 +71,17 @@ button {
   align-items: center;
   justify-content: center;
 }
-#overlayContent{
+#overlayDelete {
   z-index: 2;
   width: 50%;
   padding: 1em;
   background: #fff;
+}
+#overlayDelete button {
+  border-radius: 20px;
+  line-height: 32px;
+  padding: 0 16px;
+}
+#overlayDelete #YNButtons{
+  float: right;
 }

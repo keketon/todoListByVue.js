@@ -23,12 +23,13 @@ const vm = new Vue({
   data: {
     todos: [],
     options: [
-      { value: -1, label: 'すべて'},
-      { value: 0, label: '作業中'},
-      { value: 1, label: '完了'}
+      { value: -1, label: 'All'},
+      { value: 0, label: 'Working'},
+      { value: 1, label: 'Complete'}
     ],
     current: -1,
-    showOverlay: false
+    showDeleteOverlay: false,
+    toBeRemoved: null
   },
 
   computed: {
@@ -83,12 +84,16 @@ const vm = new Vue({
       this.todos.splice(index, 1)
     },
     //モーダルウィンドウを開く
-    openModal: function(){
-      this.showOverlay = true
+    openDeleteModal: function(item){
+      this.toBeRemoved = item
+      this.showDeleteOverlay = true
+      //nextTickでDOM生成後にfocusがあたるようになる（詳細不明）
+      this.$nextTick(() => this.$refs.DeleteYes.focus())
     },
     //同閉じる
-    closeModal: function(){
-      this.showOverlay = false;
+    closeDeleteModal: function(){
+      this.toBeDelete = null
+      this.showDeleteOverlay = false
     }
   }
 })
