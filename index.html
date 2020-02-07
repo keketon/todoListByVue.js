@@ -15,7 +15,7 @@
     </label>
 
     <!--todoテーブル-->
-    <p> <font size=5> {{ computedTodos.length }} </font> tasks displayed</p>
+    <p> <font size=5> {{ computedTodos.length }} </font> task(s) displayed</p>
     <table>
       <!--ヘッダ部分-->
       <thread>
@@ -23,7 +23,9 @@
           <th class="id">ID</th>
           <th class="comment">Comment</th>
           <th class="state">State</th>
-          <th class="button">-</th>
+          <th class="button">
+            <button @click="deleteAll"> ALL DELETE</button>
+          </th>
         </tr>
       </thread>
       <!--本体部分-->
@@ -32,7 +34,8 @@
           <th>{{ item.id }}</th>
           <td>{{ item.comment }}</td>
           <td class="state">
-            <button v-on:click="doChangeState(item)">
+            <button @click="doChangeState(item)">
+              <!--completeの状態になったらボタンの色を変えるか全体に横線を引きたい-->
               {{ labels[item.state] }}
             </button>
           </td>

@@ -94,6 +94,11 @@ const vm = new Vue({
     closeDeleteModal: function(){
       this.toBeDelete = null
       this.showDeleteOverlay = false
+    },
+    //全削除
+    deleteAll: function(){
+      return
+      //未定義
     }
   }
 })
